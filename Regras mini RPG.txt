@@ -1,0 +1,8 @@
+Regras mini RPG
+
+-- Ataque critico multiplica o dano por dois
+-- Deve ter um limite de habilidade especial para usar
+
+Tasks: 
+Separar na classe gamyng_system por metodos. 👌
+Implementar o item no game system 👌
