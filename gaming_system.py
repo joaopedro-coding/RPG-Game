@@ -48,6 +48,7 @@ class Battle:
                            
         if choice == "1":
             self.player.attack(self.enemy)
+            self.player.process_end_of_turn()
         elif choice == "2":
             print("=== Lista de Habilidades ===")
             self.player.list_skills()
@@ -60,24 +61,24 @@ class Battle:
                     self.player.list_skills()
             player_skill = getattr(self.player, skill_choice)
             player_skill(self.enemy)
-        elif choice == "3":
-            if self.player.inventory == []:
-                print("O jogador não possui itens em seu inventario.")
-            else:
-                print("=== Lista de Itens ===")
-                self.player.list_items()
-                while True:
-                    try:
-                        item_choice = int(input("Escolha um item para ser usado!"))
-                        if 1 <= item_choice <= len(self.player.inventory):
-                            break
-                        else:
-                            print("Escolha um item do menu!")
-                    except ValueError:
-                        print("Digite apenas números!")
+        # elif choice == "3":
+        #     if self.player.inventory == []:
+        #         print("O jogador não possui itens em seu inventario.")
+        #     else:
+        #         print("=== Lista de Itens ===")
+        #         self.player.list_items()
+        #         while True:
+        #             try:
+        #                 item_choice = int(input("Escolha um item para ser usado!"))
+        #                 if 1 <= item_choice <= len(self.player.inventory):
+        #                     break
+        #                 else:
+        #                     print("Escolha um item do menu!")
+        #             except ValueError:
+        #                 print("Digite apenas números!")
                 
-                item = self.player.inventory[item_choice - 1]
-                item.use(self.player)
+        #         item = self.player.inventory[item_choice - 1]
+        #         item.use(self.player)
 
         self.check_victory()
     
