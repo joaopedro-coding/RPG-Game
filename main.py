@@ -1,40 +1,15 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.common.exceptions import NoSuchElementException
-from time import sleep, time
+from creatures import Dragon, Wizard, Wolf
+from buff_base_class import Buff
+from gaming_system import Battle
 
-options_config = webdriver.ChromeOptions()
-options_config.add_experimental_option("detach", True)
+# Supondo que você já tenha a classe Creature
+player = Dragon()
+atk_buff = Buff(name="Buff de Ataque", duration=3, effect="attack", amount=5)
+def_buff = Buff(name="Buff de Defesa", duration=2, effect="defense", amount=3)
+player.buffs.append(atk_buff)
+player.buffs.append(def_buff)
 
-driver = webdriver.Chrome(options=options_config)
-driver.get("https://ozh.github.io/cookieclicker/")
-
-# sleep(5)
-
-# try:
-#     eng_btn = driver.find_element(By.ID, "langSelect-EN")
-#     print("pressing english button")
-#     eng_btn.click()
-# except NoSuchElementException:
-#     print("No element found...")
-
-sleep(5)
-# print("Completing loading")
-
-cookie_btn = driver.find_element(By.ID, "bigCookie")
-
-product_ids = [f"product{i}" for i in range(1,20)]
-
-wait_time = 5
-timeout = time() + wait_time
-five_min = time() + 60 * 5
-
-while True:
-    cookie_btn.click()
-    if time() > timeout:
-        try:
-            cookies_element = driver.find_element(By.ID, "cookies")
-            cookie_text = cookies_element.text
-            print(cookie_text)
-        except:
-            print("Error")
+enemy = Dragon()
+# Testando o uso
+battle = Battle(player, enemy)
+battle.start_battle()
